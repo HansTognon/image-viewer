@@ -1,5 +1,5 @@
 # image_viewer
-Built in javascript with Vue.js and Electron
+Simple app for viewing images built in javascript with Vue.js and Electron
 
 ## Project setup
 ```
