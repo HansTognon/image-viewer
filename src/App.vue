@@ -10,7 +10,7 @@
       @zoom-out="console('zoomed out')"
     />
     <transition name="show-control">
-      <span class="controls--left" @click="to(1)">
+      <span class="controls--left" @click="to(-1)">
         <unicon name="angle-left-b"/>
       </span>
     </transition>
@@ -56,6 +56,7 @@ export default {
       if(this.source !== [])
         this.source = this.source
           .map((file) => { return {src: 'img://' + file} })
+          console.log(this.source)
       this.to(0)
     },
     to(index) {
@@ -64,22 +65,21 @@ export default {
           this.current = index
           break
         case 1:
-        console.log(this.current + 1)
           if (this.current + 1 >= this.source.length)
             this.current = 0
           else
             this.current += 1
           break
-        case -1:
-        console.log(this.current + 1)
+        case -1: // Mal fait
           if (this.current - 1 < 0)
-            this.current = 0
+            this.current = this.source.length - 1
           else
             this.current -= 1
           break;
         default:
           break;
       }
+      console.log(this.current)
       this.image.src = this.source[this.current].src
     },
     rotate() {
@@ -94,6 +94,10 @@ export default {
     updateCanvasSize() {
       this.canvasWidth = window.innerWidth - 100
       this.canvasHeight = window.innerHeight - 100
+
+      // update menubar position
+      let menu =  document.querySelector("#menubar")
+      menu.style.left = `${(window.innerWidth / 2) - 225}px`
     },
     showImage() {
       this.context.drawImage(this.image, 0, 0, this.canvasWidth,
@@ -110,6 +114,10 @@ export default {
     this.image.onload = this.showImage
     window.addEventListener('resize', this.updateCanvasSize)
     window.addEventListener('resize', this.updateImageSize)
+
+    // adjust menubar size via Js
+    let menu =  document.querySelector("#menubar")
+    menu.style.left = `${(window.innerWidth / 2) - 225}px`
   },
 }
 </script>
@@ -141,6 +149,10 @@ body {
     align-items: center;
     background-color: #000;
     position: fixed; top: calc((100vh / 2) - 50px);
+    div {
+      display: flex; justify-content: center;
+      align-items: center;
+    }
   }
   .controls--left { left: 10px; border-radius: 5px 0 0 5px;}
   .controls--right { right: 10px; border-radius: 0 5px 5px 0;}

@@ -2,6 +2,10 @@
   "name": "image_viewer",
   "version": "0.1.0",
   "private": true,
+  "author": "HansTognon",
+  "description": "Image viewer",
+  "keywords":"Electron, Vue, Javascript, Desktop",
+  "version": "0.1.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

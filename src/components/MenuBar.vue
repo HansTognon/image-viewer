@@ -1,6 +1,6 @@
 <template lang="html">
 <transition name="show-bar">
-  <div class="menu-bar" v-show="show">
+  <div id="menubar" class="menu-bar" v-show="show">
     <div class="menu-bar__left">
       <span class="menu-bar__left__item" @click="$emit('open')"
         alt="Open a file"
