@@ -94,6 +94,10 @@ export default {
     updateCanvasSize() {
       this.canvasWidth = window.innerWidth - 100
       this.canvasHeight = window.innerHeight - 100
+
+      // update menubar position
+      let menu =  document.querySelector("#menubar")
+      menu.style.left = `${(window.innerWidth / 2) - 225}px`
     },
     showImage() {
       this.context.drawImage(this.image, 0, 0, this.canvasWidth,
@@ -110,6 +114,10 @@ export default {
     this.image.onload = this.showImage
     window.addEventListener('resize', this.updateCanvasSize)
     window.addEventListener('resize', this.updateImageSize)
+
+    // adjust menubar size via Js
+    let menu =  document.querySelector("#menubar")
+    menu.style.left = `${(window.innerWidth / 2) - 225}px`
   },
 }
 </script>
