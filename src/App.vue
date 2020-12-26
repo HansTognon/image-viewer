@@ -53,11 +53,9 @@ export default {
   methods: {
     openFile() {
       this.source = window.ipcR.sendSync('open-file') ?? []
-      console.log('App Source', this.source)
       if(this.source !== [])
         this.source = this.source
           .map((file) => { return {src: 'img://' + file} })
-      console.log(this.source)
       this.to(0)
     },
     to(index) {
@@ -97,9 +95,7 @@ export default {
       this.canvasWidth = window.innerWidth - 100
       this.canvasHeight = window.innerHeight - 100
     },
-    showImage(img) {
-      console.log("Image dimensions", this.image.height, this.image.width)
-      console.log("IMage ready to show", img)
+    showImage() {
       this.context.drawImage(this.image, 0, 0, this.canvasWidth,
         this.canvasHeight)
     },
@@ -112,7 +108,6 @@ export default {
     this.context = document.querySelector("#canvas").getContext("2d")
     this.image = new Image()
     this.image.onload = this.showImage
-    console.log("Context", this.context)
     window.addEventListener('resize', this.updateCanvasSize)
     window.addEventListener('resize', this.updateImageSize)
   },

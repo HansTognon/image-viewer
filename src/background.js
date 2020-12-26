@@ -42,6 +42,8 @@ async function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
+  // Set Win Menu to null and define custom menu
+  win.setMenu(null)
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -112,7 +114,6 @@ ipcMain.on('open-file', (event) => {
     ]
   })
   if (string !== undefined)
-  console.log('Initial path', string, path.extname(string[0]))
   event.returnValue = (string !== undefined) ?
     getImageFiles(string[0]) : undefined
 })
